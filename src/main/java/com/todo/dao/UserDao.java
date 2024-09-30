@@ -33,7 +33,15 @@ public class UserDao implements IUserDao {
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             result = preparedStatement.executeQuery();
-            System.out.println(result);
+            if(result.next()) {
+                String storedPassword = result.getString("password");
+                String storedEmail = result.getString("email");
+                if(storedPassword.equals(user.getPassword()) && storedEmail.equals(user.getEmail())) {
+                    return user;
+                } else {
+                    return null;
+                }
+            }
         } catch(SQLException e) {
             e.printStackTrace();
         }

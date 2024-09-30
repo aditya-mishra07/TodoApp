@@ -23,7 +23,7 @@ public class UserController extends HttpServlet {
         if(action.equals("/register")) {
             register(request, response);
         } else if(action.equals("/login")) {
-
+            login(request, response);
         }
 
     }
@@ -60,7 +60,9 @@ public class UserController extends HttpServlet {
         try {
             User validUser = userDao.login(user);
             if (validUser != null) {
-                request.setAttribute("Notification", "User logged in successfully");
+                request.setAttribute("notification", "User logged in successfully");
+            } else {
+                request.setAttribute("message", "Invalid username or password");
             }
         } catch (Exception e) {
             e.printStackTrace();
