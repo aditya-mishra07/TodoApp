@@ -1,5 +1,7 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,6 +25,9 @@
         <div class="mb-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary ml-">Login</button>
         </div>
+        <c:if test="${not empty sessionScope.message}">
+            <div class="alert alert-danger text-center">${sessionScope.message}</div>
+        </c:if>
     </form>
 </div>
 

@@ -60,15 +60,15 @@ public class UserController extends HttpServlet {
         try {
             User validUser = userDao.login(user);
             if (validUser != null) {
-                request.setAttribute("notification", "User logged in successfully");
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
             } else {
                 request.setAttribute("message", "Invalid username or password");
+                request.getSession().setAttribute("message", "Invalid username or password");
+                response.sendRedirect(request.getContextPath() + "/login/login.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
     }
 
 }

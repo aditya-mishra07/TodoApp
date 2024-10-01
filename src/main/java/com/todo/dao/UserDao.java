@@ -1,5 +1,4 @@
 package com.todo.dao;
-
 import com.todo.model.User;
 import com.todo.utils.JDBC;
 
@@ -17,7 +16,6 @@ public class UserDao implements IUserDao {
                  PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY)) {
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
-            System.out.println(preparedStatement);
             result = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,13 +36,13 @@ public class UserDao implements IUserDao {
                 String storedEmail = result.getString("email");
                 if(storedPassword.equals(user.getPassword()) && storedEmail.equals(user.getEmail())) {
                     return user;
-                } else {
-                    return null;
                 }
+            } else {
+                return null;
             }
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        return user;
+        return null;
     }
 }
