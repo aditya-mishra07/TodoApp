@@ -37,17 +37,17 @@ public class TodoDao implements ITodoDao {
     }
 
     @Override
-    public Todo createTodo(Todo todo) {
+    public Todo createTodo(Todo todo, int user_id) {
         String SQL_QUERY = "INSERT INTO todos" + " (title, description, is_done target_date, user_id) ;";
         ResultSet result;
         try(Connection connection = JDBC.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY)) {
-            preparedStatement.setString("title", todo.getTitle());
+//            preparedStatement.setString("title", todo.getTitle());
             result = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return todo;
+        return null;
     }
 
     @Override
@@ -64,4 +64,5 @@ public class TodoDao implements ITodoDao {
     public Todo deleteTodo(int id) throws SQLException {
         return null;
     }
+
 }
