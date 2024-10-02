@@ -44,6 +44,7 @@ public class TodoDao implements ITodoDao {
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_QUERY)) {
 //          preparedStatement.setString("title", todo.getTitle());
 //            preparedStatement.setString("description", todo.getDescription());
+//            preparedStatement.setBoolean("is_done", todo.getIs_done());
             result = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
